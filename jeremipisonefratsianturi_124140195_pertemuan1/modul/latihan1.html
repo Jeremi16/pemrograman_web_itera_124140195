@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Latihan Modul 1 - Validasi, Kalkulator, localStorage</title>
+  <style>
+    body { font-family: Arial, sans-serif; max-width: 640px; margin: 24px auto; padding: 0 16px; }
+    .err { color: red; font-size: .85em; }
+    input { padding: 8px; margin: 4px 0; width: 100%; box-sizing: border-box; }
+    button { padding: 9px 14px; margin-top: 8px; cursor: pointer; }
+    li { margin: 4px 0; }
+  </style>
+</head>
+<body>
+  <h1>Latihan Modul 1</h1>
+  <p>File latihan materi praktikum: (1) validasi form, (2) kalkulator, (3) localStorage.</p>
+
+  <h2>1. Validasi: nama minimal 3 karakter</h2>
+  <input id="latNama" placeholder="Ketik nama barang..." />
+  <div class="err" id="latNamaErr"></div>
+  <button onclick="cekNama()">Cek Validasi</button>
+
+  <h2>2. Kalkulator: subtotal + diskon 10% (≥ 50000)</h2>
+  <input id="latHarga" type="number" placeholder="Harga satuan" />
+  <input id="latQty" type="number" placeholder="Qty" />
+  <p>Hasil: <strong id="latHasil">Rp 0</strong></p>
+  <button onclick="hitungLatihan()">Hitung</button>
+
+  <h2>3. localStorage: simpan / muat daftar</h2>
+  <input id="latItem" placeholder="Nama item untuk disimpan..." />
+  <button onclick="simpanLatihan()">Simpan ke localStorage</button>
+  <button onclick="muatLatihan()">Muat &amp; Tampilkan</button>
+  <ul id="latList"></ul>
+
+  <script>
+    // 1. Validasi sederhana
+    function cekNama() {
+      const v = document.getElementById('latNama').value.trim();
+      document.getElementById('latNamaErr').textContent =
+        v.length < 3 ? 'Minimal 3 karakter!' : '';
+    }
+    // 2. Kalkulator sederhana
+    function hitungLatihan() {
+      const h = Number(document.getElementById('latHarga').value) || 0;
+      const q = Number(document.getElementById('latQty').value) || 0;
+      let total = h * q;
+      if (total >= 50000) total = total * 0.9; // diskon 10%
+      document.getElementById('latHasil').textContent =
+        'Rp ' + total.toLocaleString('id-ID');
+    }
+    // 3. localStorage dengan JSON.stringify / JSON.parse
+    const KUNCI = 'modul_latihan_list';
+    function simpanLatihan() {
+      const v = document.getElementById('latItem').value.trim();
+      if (!v) return;
+      const lama = JSON.parse(localStorage.getItem(KUNCI) || '[]');
+      lama.push(v);
+      localStorage.setItem(KUNCI, JSON.stringify(lama));
+      document.getElementById('latItem').value = '';
+      muatLatihan();
+    }
+    function muatLatihan() {
+      const data = JSON.parse(localStorage.getItem(KUNCI) || '[]');
+      document.getElementById('latList').innerHTML =
+        data.map((x) => `<li>${x}</li>`).join('');
+    }
+    muatLatihan();
+  </script>
+</body>
+</html>
