@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Dashboard Mahasiswa</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <header class="app-header">
+    <div class="container header-inner">
+      <div>
+        <h1>Dashboard Mahasiswa</h1>
+        <p class="subtitle">Jeremi Pison Efrat Sianturi - 124140195</p>
+      </div>
+      <div class="clock">
+        <strong id="jam">--:--:--</strong>
+        <span id="tanggal">-</span>
+      </div>
+    </div>
+  </header>
+
+  <main class="container">
+    <section class="card quote-card">
+      <p id="quote" class="quote">Memuat kutipan...</p>
+      <button id="btnQuote" class="btn btn-small" type="button">Kutipan Lain</button>
+    </section>
+
+    <div class="grid">
+      <section class="card">
+        <h2 id="formTitle">Tambah Tugas</h2>
+        <form id="taskForm" novalidate>
+          <div class="field">
+            <label for="judul">Judul Tugas</label>
+            <input id="judul" type="text" placeholder="Contoh: Laporan Praktikum 2">
+            <small class="error-msg" id="errJudul"></small>
+          </div>
+          <div class="field">
+            <label for="matkul">Mata Kuliah <span class="optional">(opsional)</span></label>
+            <input id="matkul" type="text" placeholder="Contoh: Pemrograman Web">
+          </div>
+          <div class="field-row">
+            <div class="field">
+              <label for="deadline">Deadline</label>
+              <input id="deadline" type="date">
+            </div>
+            <div class="field">
+              <label for="prioritas">Prioritas</label>
+              <select id="prioritas">
+                <option value="Rendah">Rendah</option>
+                <option value="Sedang" selected>Sedang</option>
+                <option value="Tinggi">Tinggi</option>
+              </select>
+            </div>
+          </div>
+          <div class="actions">
+            <button id="btnSubmit" class="btn btn-primary" type="submit">Tambah</button>
+            <button id="btnBatal" class="btn btn-secondary hidden" type="button">Batal</button>
+          </div>
+        </form>
+      </section>
+
+      <div class="stack">
+        <section class="card">
+          <h2>Cuaca ITERA</h2>
+          <div id="cuaca" class="weather">Memuat cuaca...</div>
+          <button id="btnCuaca" class="btn btn-small" type="button">Muat Ulang</button>
+        </section>
+
+        <section class="card">
+          <h2>Ringkasan</h2>
+          <dl class="summary" id="ringkasan"></dl>
+        </section>
+      </div>
+    </div>
+
+    <section class="card table-card">
+      <div class="table-head">
+        <h2>Daftar Tugas <span class="count" id="count">0</span></h2>
+        <div class="filter" id="filter">
+          <button class="btn btn-small active" data-filter="semua" type="button">Semua</button>
+          <button class="btn btn-small" data-filter="belum" type="button">Belum</button>
+          <button class="btn btn-small" data-filter="selesai" type="button">Selesai</button>
+        </div>
+      </div>
+      <ul class="task-list" id="taskList"></ul>
+      <div class="table-foot">
+        <button id="btnReset" class="btn btn-small btn-danger" type="button">Hapus Semua Data</button>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer">Tugas 2 - Pemrograman Web ITERA</footer>
+
+  <script src="script.js"></script>
+</body>
+</html>
