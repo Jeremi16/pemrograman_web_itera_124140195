@@ -1,0 +1,13 @@
+.filter-label { display: block; font-weight: 600; margin-bottom: 6px; font-size: 0.9rem; }
+.pills { display: flex; flex-wrap: wrap; gap: 6px; }
+.pill {
+  font-family: inherit;
+  font-size: 0.85rem;
+  padding: 6px 14px;
+  border-radius: 999px;
+  border: 1px solid var(--ink);
+  background: #fff;
+  color: var(--ink);
+  cursor: pointer;
+}
+.pill:hover, .pill.active { background: var(--ink); color: #fff; }

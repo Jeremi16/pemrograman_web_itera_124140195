@@ -1,0 +1,3 @@
+.book-table .col-no { width: 36px; color: var(--muted); }
+.book-table .actions { text-align: right; white-space: nowrap; }
+.book-table td.actions .btn + .btn { margin-left: 6px; }
